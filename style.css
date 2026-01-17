@@ -1,0 +1,225 @@
+/* --- CSS Variables & Reset --- */
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #f0f0f0;
+    --accent-color: #00ff88; /* Neon Green */
+    --secondary-text: #888;
+    --card-bg: #161616;
+    --font-main: 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* --- Layout Utilities --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 100px 0;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 20px;
+}
+
+/* --- 1. Hero Section --- */
+#hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+
+#hero-canvas-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    /* 나중에 3D 캔버스가 들어오면 이 배경은 fallback이 됩니다 */
+}
+
+.hero-content {
+    z-index: 1;
+    max-width: 800px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--secondary-text);
+    font-weight: 300;
+}
+
+/* --- 2. Core Philosophy --- */
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.phil-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    transition: transform 0.3s ease;
+}
+
+.phil-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+}
+
+.phil-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tag {
+    background: #222;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid #444;
+}
+
+/* --- 3. Projects --- */
+.project-item {
+    margin-bottom: 80px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 80px;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.project-title { font-size: 2rem; }
+.project-tech { color: var(--accent-color); font-family: monospace; }
+
+.project-video-placeholder {
+    width: 100%;
+    height: 500px;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    color: #555;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sensory Map Visualization */
+.sensory-map {
+    margin-top: 30px;
+    background: #111;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.sensory-label { font-size: 0.9rem; margin-bottom: 5px; display: block; color: #aaa;}
+
+.sensory-bar-container {
+    width: 100%;
+    background: #333;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sensory-bar-fill {
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 5px;
+    transition: width 1s ease-out; /* 애니메이션 효과 준비 */
+}
+
+.project-desc {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-top: 20px;
+    max-width: 800px;
+}
+
+/* --- 5. About & Contact --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.tool-category { margin-bottom: 30px; }
+.tool-category h4 { margin-bottom: 10px; color: #fff; }
+
+.contact-link {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid transparent;
+    width: fit-content;
+}
+
+.contact-link:hover {
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--accent-color);
+}
+
+footer {
+    text-align: center; 
+    padding: 50px 0; 
+    color: #555; 
+    font-size: 0.8rem;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .philosophy-grid, .about-grid { grid-template-columns: 1fr; }
+    .project-video-placeholder { height: 300px; }
+    .project-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
