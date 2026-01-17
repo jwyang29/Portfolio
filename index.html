@@ -5,27 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multisensory AI Design Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
 
+    <header class="mobile-header">
+        <div class="logo-mobile">AI <span class="pink-text">SENSORY</span></div>
+        <button id="mobile-menu-btn" aria-label="Open Menu">
+            <i class="ph ph-list"></i>
+        </button>
+    </header>
+
     <nav id="sidebar">
-        <div class="logo">
-            AI <span class="pink-text">SENSORY</span><br>DESIGN
+        <button id="theme-toggle" aria-label="Switch Theme">
+            <i class="ph ph-sun" id="theme-icon"></i>
+        </button>
+
+        <div class="sidebar-content">
+            <div class="logo">
+                AI <span class="pink-text">SENSORY</span><br>DESIGN
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">01. Intro</a></li>
+                <li><a href="#philosophy">02. Philosophy</a></li>
+                <li><a href="#projects">03. Projects</a></li>
+                <li><a href="#contact">04. Contact</a></li>
+            </ul>
         </div>
-        <ul class="nav-links">
-            <li><a href="#hero">01. Intro</a></li>
-            <li><a href="#philosophy">02. Philosophy</a></li>
-            <li><a href="#projects">03. Projects</a></li>
-            <li><a href="#contact">04. Contact</a></li>
-        </ul>
+        
         <div class="sidebar-footer">
             © 2026 Portfolio
         </div>
     </nav>
 
-    <main>
+    <main id="main-content">
         <section id="hero" class="scroll-section">
-            <div id="hero-bg"></div> <div class="hero-content fade-in-up">
+            <div class="hero-content fade-in-up">
                 <h1>Designing beyond<br>the <span class="pink-text">Screen.</span></h1>
                 <p>
                     AI와 다감각(Multi-sensory) 경험의 교차점.<br>
@@ -40,11 +55,11 @@
                 <h2 class="section-title fade-in">Core <span class="pink-text">Philosophy</span></h2>
                 <div class="grid-2col">
                     <div class="card fade-in delay-1">
-                        <h3>🤖 AI as Collaborator</h3>
+                        <h3><i class="ph ph-robot"></i> AI as Collaborator</h3>
                         <p>AI는 도구를 넘어선 파트너입니다. 생성형 모델(Generative AI)을 통해 창의성의 한계를 확장하고, 데이터 패턴을 시각적 언어로 변환합니다.</p>
                     </div>
                     <div class="card fade-in delay-2">
-                        <h3>🖐️ Sensory Expansion</h3>
+                        <h3><i class="ph ph-hand-pointing"></i> Sensory Expansion</h3>
                         <p>시각 중심의 웹을 청각(Auditory)과 촉각(Haptic)으로 확장합니다. 공간 음향과 미세 인터랙션을 통해 몰입형 경험을 만듭니다.</p>
                     </div>
                 </div>
@@ -120,6 +135,8 @@
             </div>
         </section>
     </main>
+
+    <div id="overlay"></div>
 
     <script src="script.js"></script>
 </body>
