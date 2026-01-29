@@ -2,7 +2,6 @@
 :root {
     /* Dark Mode (Default) */
     --bg-color: #050505;
-    --sidebar-bg: #000000;
     --text-color: #ffffff;
     --text-muted: #aaaaaa;
     --accent-pink: #ff007f;
@@ -10,7 +9,7 @@
     --border-color: #222222;
     --placeholder-bg: #1a1a1a;
     
-    --sidebar-width: 260px;
+    --sidebar-width: 230px;
     --nav-height-mobile: 60px;
 }
 
@@ -50,14 +49,28 @@ button { cursor: pointer; border: none; background: none; color: inherit; }
     top: 0; left: 0;
     width: var(--sidebar-width);
     height: 100vh;
-    background: var(--sidebar-bg);
-    border-right: 1px solid var(--border-color);
+    background: var(--bg-color);
+    border-right: none !important;
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     z-index: 1000;
     transition: transform 0.3s ease, background-color 0.3s;
+    overflow: visible; /* 캔버스가 삐져나가도 잘리지 않게 */
+}
+/* [추가] 사이드바의 '몸통' 배경 (오른쪽 30px를 남겨두고 칠함) */
+#sidebar::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    
+    /* 캔버스가 시작되는 지점까지만 배경을 채움 */
+    width: calc(100% - 30px); 
+    
+    background: var(--bg-color);
+    z-index: -1; /* 글자보다 뒤에 위치 */
+    transition: background-color 0.3s;
 }
 
 #theme-toggle {
@@ -73,6 +86,7 @@ button { cursor: pointer; border: none; background: none; color: inherit; }
     font-weight: 700;
     line-height: 1.2;
     margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .nav-links li { margin-bottom: 20px; }
@@ -103,34 +117,60 @@ section {
 }
 
 /* Hero Section */
+/* Hero Section 수정 */
+
+/* 텍스트와 버튼을 감싸는 컨테이너 */
+.hero-content {
+    /* 1. 컨테이너 규격 맞추기 (.container와 동일하게) */
+    width: 100%;           /* 화면 꽉 차게 */
+    max-width: 1000px;     /* 다른 섹션과 똑같은 최대 폭 */
+    margin: 0 auto;        /* 중앙 정렬 */
+    padding: 0 40px;       /* 좌우 여백 */
+
+    /* 2. 내부 요소 정렬 (왼쪽 정렬) */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 텍스트와 버튼을 왼쪽으로 */
+    justify-content: center;
+}
+
 #hero h1 {
     font-size: 5rem;
     line-height: 1.1;
     margin-bottom: 30px;
+    padding: 0; /* 패딩은 부모(.hero-content)에서 처리 */
 }
+
 #hero p {
     font-size: 1.2rem;
     color: var(--text-muted);
-    max-width: 500px;
-    margin-bottom: 50px;
+    max-width: 600px; /* 글씨가 너무 길게 퍼지지 않도록 제한 (선택 사항) */
+    margin-bottom: 40px;
+    padding: 0;
 }
 
+/* 버튼 스타일은 기존 유지 */
 .btn-pink {
+    display: inline-block;
     padding: 15px 40px;
     border: 1px solid var(--accent-pink);
     color: var(--accent-pink);
     border-radius: 50px;
     font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
+
 .btn-pink:hover {
     background: var(--accent-pink);
     color: #fff;
+    transform: translateY(-2px);
 }
 
 /* Cards & Components */
-.grid-2col {
+.grid-col {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 30px;
     margin-top: 50px;
 }
@@ -235,4 +275,32 @@ section {
     .grid-2col, .project-item { grid-template-columns: 1fr; gap: 30px; }
     .project-item { display: flex; flex-direction: column-reverse; /* 모바일엔 영상이 위, 설명이 아래 */ }
     .email-link { font-size: 1.5rem; }
+}
+
+#wave-canvas {
+    position: absolute;
+    top: 0;
+    right: -30px; /* 사이드바 바깥으로 살짝 튀어나오게 배치 */
+    width: 60px;  /* 곡선이 움직일 충분한 폭 확보 */
+    height: 100%;
+    pointer-events: none; /* 마우스 클릭 통과 */
+    z-index: 999;
+}
+
+/* 마이크 버튼 스타일 */
+.mic-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    padding: 8px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-muted);
+    transition: all 0.3s;
+}
+.mic-toggle:hover, .mic-toggle.active {
+    border-color: var(--accent-pink);
+    color: var(--accent-pink);
+    background: rgba(255, 0, 127, 0.1);
 }
