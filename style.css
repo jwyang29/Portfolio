@@ -292,7 +292,7 @@ section {
     position: absolute;
     top: 0;
     right: -30px; /* 사이드바 바깥으로 살짝 튀어나오게 배치 */
-    width: 60px;  /* 곡선이 움직일 충분한 폭 확보 */
+    width: 100px;  /* 곡선이 움직일 충분한 폭 확보 */
     height: 100%;
     pointer-events: none; /* 마우스 클릭 통과 */
     z-index: 999;
