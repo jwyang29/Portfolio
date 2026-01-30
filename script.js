@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // 곡선 그리기 (Sine Wave)
         // x = 기본위치 + (진폭 * sin(y * 주파수 + 시간))
-        const baseX = 30; // 캔버스 중앙
+        const baseX = 75; // 캔버스 중앙
         const waveFrequency = 0.01; // 굴곡 빈도
         
         // 볼륨에 따라 흔들림 강도 조절 (기본 호흡: 2, 소리나면: volume * 0.5)
